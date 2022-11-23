@@ -47,7 +47,7 @@ public class Controller {
         return modelAndView;
     }
 
-    @PostMapping(value = "/add-student")
+    @PostMapping(value = "/add-record")
     public ModelAndView addStudent(StudentDto studentDto) {
         return htmlPageService.createStudent(studentDto);
     }

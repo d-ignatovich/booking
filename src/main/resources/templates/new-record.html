@@ -13,7 +13,7 @@
 
 <main role="main" class="container">
     <h2>Создание нового объявления</h2>
-    <form action="/add-student" method="post" th:object="${recordingDto}">
+    <form action="/add-student" method="post" th:object="${StudentDto}">
         <div class="form-group">
             <label for="exampleInputTitle">Заголовок</label>
             <input type="text" class="form-control" id="exampleInputTitle" name="title" placeholder="Заголовок" required>
