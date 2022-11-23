@@ -40,10 +40,10 @@ public class Controller {
         return htmlPageService.createStudentPage();
     }
 
-    @GetMapping(value = "/add-student")
+    @GetMapping(value = "/add-record")
     public ModelAndView newStudent() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("new-student"); // указываю какую страницу вернуть
+        modelAndView.setViewName("new-record"); // указываю какую страницу вернуть
         return modelAndView;
     }
 
