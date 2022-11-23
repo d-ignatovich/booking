@@ -15,23 +15,33 @@
     <h2>Add new Student</h2>
     <form action="/add-student" method="post" th:object="${studentDto}">
         <div class="form-group">
-            <label for="exampleNumber">Number</label>
-            <input type="text" class="form-control" id="exampleNumber" name="number" placeholder="Номер студенческого билета">
+            <label for="exampleNumber">Заголовок</label>
+            <input type="text" class="form-control" id="exampleNumber" name="number" placeholder="Заголовок" required>
         </div>
         <div class="form-group">
-            <label for="exampleInputName">Name</label>
-            <input type="text" class="form-control" id="exampleInputName" name="name" placeholder="Vasya Pupkin">
+            <label for="exampleInputName">Адрес</label>
+            <input type="text" class="form-control" id="exampleInputName" name="name" placeholder="г. Новосибирск, ул.Тюленина, д. 15" required>
         </div>
         <div class="form-group">
-            <label for="exampleInputBirthDate">Birth Date</label>
-            <input type="text" class="form-control" id="exampleInputBirthDate" name="birthDate">
+            <label for="exampleInputBirthDate">Количество спальных мест</label>
+            <input type="text" class="form-control" id="exampleInputBirthDate" name="#" required>
         </div>
-
+        <div class="form-group">
+            <label for="exampleInputBirthDate">Цена</label>
+            <input type="text" class="form-control" id="exampleInputBirthDate" name="#" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputBirthDate">Описание</label>
+            <input type="text" class="form-control" id="exampleInputBirthDate" name="Введите описание">
+        </div>
         <div class="text-center">
-            <button class="btn btn-success" type="submit">ADD</button>
-            <a href="/all-students" class="btn btn-light" role="button">Back</a>
+            <button class="btn btn-success" type="submit">Создать запись</button>
+            <a href="/all-students" class="btn btn-light" role="button">Вернуться</a>
         </div>
     </form>
+    <div class="image">
+        <img src="https://proprikol.ru/wp-content/uploads/2020/08/krasivye-kartinki-kotikov-17.jpg" height="25%">
+    </div>
 </main>
 </body>
 </html>
