@@ -11,10 +11,10 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudentDto {
-
-    private String id;
-    private String number;
-    private String name;
-    private String birthDate;
-
+    private String title;
+    private String address;
+    private int berth_tiny;
+    private int rent;
+    private String description;
+    private String image;
 }

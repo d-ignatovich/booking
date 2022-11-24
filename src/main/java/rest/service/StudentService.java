@@ -9,7 +9,7 @@ import rest.persistence.repository.StudentRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
+// прописать семетеры и гетеры из студентДто
 @Service
 public class StudentService {
 
@@ -36,10 +36,11 @@ public class StudentService {
         List<StudentDto> resultList = new ArrayList<>();
         for (Student student : students) {
             StudentDto studentDto = new StudentDto();
-            studentDto.setId(student.getId().toString());
-            studentDto.setNumber(student.getNumber());
-            studentDto.setName(student.getName());
-            studentDto.setBirthDate(student.getBirthDate());
+            studentDto.setTitle(student.getId().toString());
+            studentDto.setAddress(student.getNumber());
+            studentDto.setBerth_tiny(student.getName());
+            studentDto.setRent(student.getBirthDate());
+            studentDto.setDescription(student.getBirthDate());
             resultList.add(studentDto);
         }
 

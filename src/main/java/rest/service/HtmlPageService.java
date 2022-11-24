@@ -5,7 +5,8 @@ import org.springframework.web.servlet.ModelAndView;
 import rest.dto.StudentDto;
 
 import java.util.UUID;
-
+//зменить гипер ссылки
+//переименовать для нашей
 @Service
 public class HtmlPageService {
 
