@@ -1,3 +1,88 @@
-.container {
-    margin: 15px 35px;
+body{
+  background:#c0c0c0; /* Меняется фон экрана, выбирается здесь */
+}
+
+#wrapper{ /* Оболочка страницы сайта */
+  width: 1500px; /* Меняется ширина страницы */
+  margin: 0 auto;
+  background:#F5F5DC; /* Меняется задний фон страницы */
+}
+
+/* Шапка сайта */
+
+#header{
+position:relative; /* Задаём блоку относительное позиционирование для того, чтобы затем размещать, в нём другие элементы и позиционировать относительно его границ поверх фоновой картинки и заголовка */
+  height: 150px; /* Высота шапки */
+  background-color: #C0C0C0; /* Фон шапки */
+   margin-bottom: 5px; /* Нижний отступ шапки от остального контента */
+  border-radius: 5px; /* Закругляются углы блока */
+  box-shadow: rgba(0,0,0,0.5) 0px 1px 3px; /* Тень. Визуально приподнимает блок над оболочкой */
+}
+h11{ /* Заголовок сайта */
+  margin:0 0 10px 40px; /* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: xx-large;
+  font-weight: bold;
+  color:#FF0000; /* Цвет заголовка */
+}
+h22{ /* Заголовок сайта */
+  margin:0 0 10px 1100px; /* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: large;
+  color:#00FFFF; /* Цвет заголовка */
+}
+
+/* Контент (статья) */
+
+#content{ /* Блок контента */
+  position:absolute;
+  margin-bottom: 5px; /* Отступ блока статьи от блока подвала */
+  width: 1300px; /* Ширина статьи */
+  height: 450px; 
+  padding: 10px; /* Отступ текста от краёв блока */
+  background: #F0F8FF; /* Фон статьи */
+  border-radius: 15px;
+  box-shadow: rgba(5,5,5,5) 1px 2px 3px;
+}
+imeg{ /* Картинка в тексте слева */
+  float: left;
+  position: relative;
+  top:80px; left:100px;
+}
+c1{
+  position: relative;
+  top:40px; left:300px; /* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: xx-large;
+  font-weight: bold;
+  color:#FF0000	; /* Цвет заголовка */
+}
+c2{
+  position: relative;
+  top:50px; left:320px;  /* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: medium;
+  font-weight: bold;
+  color:#808080	; /* Цвет заголовка */
+}
+c3{
+  position: relative;
+  top:60px; left:320px; /* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: large;
+  font-weight: bold;
+  color:#696969; /* Цвет заголовка */
+}
+c4{
+  position: relative;
+  top:90px; left:320px; /* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: x-large;
+  font-weight: bold;
+  color:#C0C0C0; /* Цвет заголовка */
+}
+
+/* Подвал */
+
+#footer{ /* Блок подвала */
+  position:relative;
+  height:100px; /* Высота блока подвала */
+  background-color: #808000; /* Фон блока подвала */
+  margin-bottom: 10px; /* Отступ снизу */
+  border-radius: 5px; /* Закруглённые углы */
+  box-shadow: rgba(0,0,0,0.5) 0px 1px 3px; /* Тень блока */
 }

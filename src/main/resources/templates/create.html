@@ -13,7 +13,7 @@
 
 <main role="main" class="container">
     <h2>Создание нового объявления</h2>
-    <form action="/add-record" method="post" th:object="${RecordDTO}">
+    <form action="/create" method="post" th:object="${RecordDTO}">
         <div class="form-group">
             <label for="exampleInputTitle">Заголовок</label>
             <input type="text" class="form-control" id="exampleInputTitle" name="title" placeholder="Заголовок" required>
@@ -24,23 +24,18 @@
         </div>
         <div class="form-group">
             <label for="exampleInputBerth">Количество спальных мест</label>
-            <input type="text" class="form-control" id="exampleInputBerth" name="berth" placeholder="0" required>
+            <input type="number" min="1" step="1" class="form-control" id="exampleInputBerth" name="berth" placeholder="1" required>
         </div>
         <div class="form-group">
             <label for="exampleInputRent">Цена</label>
-            <input type="text" class="form-control" id="exampleInputRent" name="rent" placeholder="0" required>
+            <input type="number" min="0" class="form-control" id="exampleInputRent" name="rent" placeholder="0" required>
         </div>
         <div class="form-group">
             <label for="exampleInputDescription">Описание</label>
             <input type="text" class="form-control" id="exampleInputDescription" name="description" placeholder="Описание сдаваемого помещения">
         </div>
-        <div class="form-group">
-            <label for="exampleInputImage">Путь к изображению</label>
-            <input type="text" class="form-control" id="exampleInputImage" name="image" placeholder="Путь к изображению">
-        </div>
-        <div class="image">
-            <img src="https://proprikol.ru/wp-content/uploads/2020/08/krasivye-kartinki-kotikov-17.jpg" width="200px">
-        </div>
+        <input class="form-control" type="file" id="image" accept="image/*" name="image" style="display: none">
+        <label for="image">Загрузить изображение</label>
         <div class="text-center">
             <button class="btn btn-success" type="submit">Создать запись</button>
             <a href="/" class="btn btn-light" role="button">Вернуться</a>

@@ -56,8 +56,8 @@ public class RecordService {
     private ModelAndView createAndFillModel(List<RecordDTO> recordDTOs) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.clear();
-        modelAndView.getModel().put("listRecords", recordDTOs);
-        modelAndView.setViewName("records-page");
+        modelAndView.getModel().put("records", recordDTOs);
+        modelAndView.setViewName("records");
         return modelAndView;
     }
 

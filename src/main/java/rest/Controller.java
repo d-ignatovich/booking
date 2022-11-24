@@ -2,11 +2,16 @@ package rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import rest.service.HtmlPageService;
 import rest.dto.RecordDTO;
 
 import javax.servlet.http.HttpServletResponse;
+
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -24,19 +29,19 @@ public class Controller {
      * метод возвращает html страницу, "resources/templates/welcome.html"
      **/
     @GetMapping(value = "/")
-    public ModelAndView main() {
+    public ModelAndView recordsPage() {
         ModelAndView modelAndView = new ModelAndView();
         return htmlPageService.createRecordPage();
     }
 
-    @GetMapping(value = "/add-record")
+    @GetMapping(value = "/create")
     public ModelAndView newRecord() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("new-record"); // указываю какую страницу вернуть
+        modelAndView.setViewName("create"); // указываю какую страницу вернуть
         return modelAndView;
     }
 
-    @PostMapping(value = "/add-record")
+    @PostMapping(value = "/create")
     public ModelAndView addRecord(RecordDTO recordDTO) {
         return htmlPageService.createRecord(recordDTO);
     }
