@@ -1,139 +1,88 @@
-html{
-  height: 100%;
-}
-body {
-    position: relative;
-    margin: 0;
-    color: #000000;
-    min-height: 100%;
+body{
+  background:#c0c0c0; /* Меняется фон экрана, выбирается здесь */
 }
 
-header {
-    background: #90EE90;
-    padding-left: 2%
+#wrapper{ /* Оболочка страницы сайта */
+  width: 1500px; /* Меняется ширина страницы */
+  margin: 0 auto;
+  background:#F5F5DC; /* Меняется задний фон страницы */
 }
 
-main {
-     /* Выставляем отступ с высотой footer по умолчанию */
-    padding-bottom: 30px;
-    background: #FFFFFF;
-    width: 100%;
+/* Шапка сайта */
+
+#header{
+position:relative; /* Задаём блоку относительное позиционирование для того, чтобы затем размещать, в нём другие элементы и позиционировать относительно его границ поверх фоновой картинки и заголовка */
+  height: 150px; /* Высота шапки */
+  background-color: #C0C0C0; /* Фон шапки */
+   margin-bottom: 5px; /* Нижний отступ шапки от остального контента */
+  border-radius: 5px; /* Закругляются углы блока */
+  box-shadow: rgba(0,0,0,0.5) 0px 1px 3px; /* Тень. Визуально приподнимает блок над оболочкой */
+}
+h11{ /* Заголовок сайта */
+  margin:0 0 10px 40px; /* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: xx-large;
+  font-weight: bold;
+  color:#FF0000; /* Цвет заголовка */
+}
+h22{ /* Заголовок сайта */
+  margin:0 0 10px 1100px; /* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: large;
+  color:#00FFFF; /* Цвет заголовка */
 }
 
-footer {
-    /* Позиционируем footer внизу main */
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    /* Высота footer по умолчанию */
-    height: 30px;
-    background: #90EE90;
+/* Контент (статья) */
+
+#content{ /* Блок контента */
+  position:absolute;
+  margin-bottom: 5px; /* Отступ блока статьи от блока подвала */
+  width: 1300px; /* Ширина статьи */
+  height: 450px; 
+  padding: 10px; /* Отступ текста от краёв блока */
+  background: #F0F8FF; /* Фон статьи */
+  border-radius: 15px;
+  box-shadow: rgba(5,5,5,5) 1px 2px 3px;
+}
+imeg{ /* Картинка в тексте слева */
+  float: left;
+  position: relative;
+  top:80px; left:100px;
+}
+c1{
+  position: relative;
+  top:40px; left:300px; /* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: xx-large;
+  font-weight: bold;
+  color:#FF0000	; /* Цвет заголовка */
+}
+c2{
+  position: relative;
+  top:50px; left:320px;  /* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: medium;
+  font-weight: bold;
+  color:#808080	; /* Цвет заголовка */
+}
+c3{
+  position: relative;
+  top:60px; left:320px; /* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: large;
+  font-weight: bold;
+  color:#696969; /* Цвет заголовка */
+}
+c4{
+  position: relative;
+  top:90px; left:320px; /* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: x-large;
+  font-weight: bold;
+  color:#C0C0C0; /* Цвет заголовка */
 }
 
-.record-info{ /* Блок контента */
-    position:relative;
-    display: inline-block;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    width: 100%;
-    min-height: 200px;
-    background: #F0F8FF; /* Фон статьи */
-    border-radius: 15px;
-    box-shadow: rgba(5,5,5,5) 1px 2px 3px;
+/* Подвал */
 
-}
-.record-info input{
-    padding-left: 55%;
-}
-
-.record-info textarea{
-    padding-left: 55%;
-}
-.record-img{ /* Картинка в тексте слева */
-    display: inline-block;
-    float: left;
-    position: relative;
-    top:40%;
-    padding-left:8%;
-}
-
-.record-title { /* Title */
-    top:8%;
-    font-size: 32px;
-    font-weight: bold;
-    color:#FF0000	;
-}
-
-.record-address{
-    top:20%;
-    font-size: medium;
-    font-weight: bold;
-    color:#808080;
-}
-
-.record-description{
-    top:30%;
-    width: 70%;
-    font-size: large;
-    font-weight: bold;
-    font-align: justify;
-    color:#696969	;
-}
-
-.record-rent{
-    top:45%;
-    font-size: x-large;
-    font-weight: bold;
-    color:#C0C0C0	;
-}
-
-.no-record{ /* No books */
-    display: inline-block;
-    top:35%;
-    padding-left: 40%;
-    font-align:center;/* Заголовок двигается верх-вправо-вниз-влево. */
-    font-size: x-large;
-    font-weight: bold;
-    color:#C0C0C0	; /* Цвет заголовка */
-}
-
-img {
-    width: 300px;
-    height: 300px;
-}
-
-/* Оформление строки поиска среди объявлений*/
-.search_wrapper{
-    width: 100%;
-
-}
-
-.search-short_wrapper{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-
-}
-
-.search_section_geo{
-    width: 40%;
-}
-
-.search_section_price{
-    width: 60%;
-    text-align:center;
-
-}
-
-.section_geo[type=text]{
-    width:80%;
- }
-
-.section_price_from,
-.section_price_to,
-.section_geo[type=text]{
-    border-style: solid;
-    border-color: #2ea81b;
-    border-radius: 20px;
+#footer{ /* Блок подвала */
+  position:relative;
+  height:100px; /* Высота блока подвала */
+  background-color: #808000; /* Фон блока подвала */
+  margin-bottom: 10px; /* Отступ снизу */
+  border-radius: 5px; /* Закруглённые углы */
+  box-shadow: rgba(0,0,0,0.5) 0px 1px 3px; /* Тень блока */
 }

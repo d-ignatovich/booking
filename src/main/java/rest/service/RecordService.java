@@ -2,13 +2,10 @@ package rest.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
-
 import rest.dto.RecordDTO;
 import rest.persistence.repository.RecordRepository;
 import rest.persistence.entity.Record;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -24,13 +21,17 @@ public class RecordService {
 
     public ModelAndView createRecord(RecordDTO recordDTO) {
         Record record = new Record();
-        record.setId(UUID.fromString(recordDTO.getId()));
+        record.setId(UUID.randomUUID());
         record.setTitle(recordDTO.getTitle());
         record.setAddress(recordDTO.getAddress());
         record.setBerth(recordDTO.getBerth());
         record.setRent(recordDTO.getRent());
         record.setDescription(recordDTO.getDescription());
-        record.setImage(recordDTO.getImage());
+        if (!recordDTO.getImage().equals("")) {
+            record.setImage(recordDTO.getImage());
+        } else {
+            record.setImage("/tmp/default.jpg");
+        }
         recordRepository.save(record);
         return getAllRecords();
     }
@@ -53,7 +54,8 @@ public class RecordService {
     }
 
     private ModelAndView createAndFillModel(List<RecordDTO> recordDTOs) {
-        ModelAndView modelAndView = new ModelAndView("forward:/");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.clear();
         modelAndView.getModel().put("records", recordDTOs);
         modelAndView.setViewName("records");
         return modelAndView;
