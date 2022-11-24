@@ -9,7 +9,8 @@ import rest.service.RecordService;
 
 import java.io.IOException;
 import java.util.UUID;
-
+//зменить гипер ссылки
+//переименовать для нашей
 @Service
 public class HtmlPageService {
 
