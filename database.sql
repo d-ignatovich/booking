@@ -10,7 +10,7 @@ create table record(
     berth tinyint not null,
     rent int not null,
     description text,
-    image varchar(64),
+    image varchar(64) default "default.jpg",
     primary key (id)
 );
 

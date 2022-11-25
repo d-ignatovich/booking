@@ -13,7 +13,7 @@
 
 <main role="main" class="container">
     <h2>Создание нового объявления</h2>
-    <form action="/create" method="post" th:object="${RecordDTO}">
+    <form action="/create" method="post" th:object="${RecordDTO}" enctype="multipart/form-data">
         <div class="form-group">
             <label for="exampleInputTitle">Заголовок</label>
             <input type="text" class="form-control" id="exampleInputTitle" name="title" placeholder="Заголовок" required>
@@ -34,8 +34,9 @@
             <label for="exampleInputDescription">Описание</label>
             <input type="text" class="form-control" id="exampleInputDescription" name="description" placeholder="Описание сдаваемого помещения">
         </div>
-        <input class="form-control" type="file" id="image" accept="image/*" name="image" style="display: none">
-        <label for="image">Загрузить изображение</label>
+        <div class="form-group">
+            <input class="form-control" type="file" id="image" accept="image/*" name="file">
+        </div>
         <div class="text-center">
             <button class="btn btn-success" type="submit">Создать запись</button>
             <a href="/" class="btn btn-light" role="button">Вернуться</a>

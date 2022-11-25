@@ -1,33 +1,26 @@
 package rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+
 import rest.service.HtmlPageService;
 import rest.dto.RecordDTO;
 
 import javax.servlet.http.HttpServletResponse;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-/**
- * Класс в котором описываются http методы (АПИ), методы вызываются с фронта
- **/
 @RestController
 public class Controller {
 
     @Autowired
     private HtmlPageService htmlPageService;
 
-    /**
-     * Пример метода который будет вызываться по URL: http://localhost:8080
-     * метод возвращает html страницу, "resources/templates/welcome.html"
-     **/
     @GetMapping(value = "/")
     public ModelAndView recordsPage() {
         ModelAndView modelAndView = new ModelAndView();
@@ -42,7 +35,14 @@ public class Controller {
     }
 
     @PostMapping(value = "/create")
-    public ModelAndView addRecord(RecordDTO recordDTO) {
+    public ModelAndView addRecord(RecordDTO recordDTO, @RequestParam("file") MultipartFile file){
+        recordDTO.setId(UUID.randomUUID().toString());
+        if (file.isEmpty()) {
+            recordDTO.setImage("default.jpg");
+        } else {
+            recordDTO.setImage(recordDTO.getId() + ".jpg");
+        FileUploadUtility.saveFile(recordDTO.getImage(), file);
+        }
         return htmlPageService.createRecord(recordDTO);
     }
 

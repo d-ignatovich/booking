@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/web
     username: root
-    password: 12345
+    password: keyq
     driver-class-name: com.mysql.jdbc.Driver
     #driver-class-name: org.postgresql.Driver
     initialization-mode: never
