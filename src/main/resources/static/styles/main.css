@@ -4,7 +4,7 @@ body{
 }
 
 #wrapper{ /* Оболочка страницы сайта */
-  width: 1500px; /* Меняется ширина страницы */
+  width: 100%; /* Меняется ширина страницы */
   margin: 0 auto;
   background:#F5F5DC; /* Меняется задний фон страницы */
 }
@@ -26,7 +26,8 @@ h11{ /* Заголовок сайта */
   color:#FF0000	; /* Цвет заголовка */
 }
 h22{ /* Заголовок сайта */
-  margin:0 0 10px 1100px; /* Заголовок двигается верх-вправо-вниз-влево. */
+  position: relative;
+  top:1%; left:85%; /* Заголовок двигается верх-вправо-вниз-влево. */
   font-size: large;
   color:#00FFFF; /* Цвет заголовка */
 }
@@ -46,32 +47,39 @@ h22{ /* Заголовок сайта */
 imeg{ /* Картинка в тексте слева */
   float: left;
   position: relative;
-  top:80px; left:100px;
+  top:40%; left:8%;
 }
-c1{
-  position: relative;
-  top:40px; left:300px; /* Заголовок двигается верх-вправо-вниз-влево. */
+c1{ /* Title */
+  position: absolute;
+  top:8%; left:24%; /* Заголовок двигается верх-вправо-вниз-влево. */
   font-size: xx-large;
   font-weight: bold;
   color:#FF0000	; /* Цвет заголовка */
 }
-c2{
-  position: relative;
-  top:50px; left:320px;  /* Заголовок двигается верх-вправо-вниз-влево. */
+c2{ /* Address */
+  position: absolute;
+  top:20%; left:25%;  /* Заголовок двигается верх-вправо-вниз-влево. */
   font-size: medium;
   font-weight: bold;
   color:#808080	; /* Цвет заголовка */
 }
-c3{
-  position: relative;
-  top:60px; left:320px; /* Заголовок двигается верх-вправо-вниз-влево. */
+c3{ /* Offer */
+  position: absolute;
+  top:30%; left:25%; /* Заголовок двигается верх-вправо-вниз-влево. */
   font-size: large;
   font-weight: bold;
   color:#696969	; /* Цвет заголовка */
 }
-c4{
+c4{ /* Price */
+  position: absolute;
+  top:45%; left:25%; /* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: x-large;
+  font-weight: bold;
+  color:#C0C0C0	; /* Цвет заголовка */
+}
+nobook{ /* No books */
   position: relative;
-  top:90px; left:320px; /* Заголовок двигается верх-вправо-вниз-влево. */
+  top:35%; left:40%; /* Заголовок двигается верх-вправо-вниз-влево. */
   font-size: x-large;
   font-weight: bold;
   color:#C0C0C0	; /* Цвет заголовка */
