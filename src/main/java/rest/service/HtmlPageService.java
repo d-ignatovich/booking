@@ -7,6 +7,7 @@ import net.bytebuddy.dynamic.scaffold.TypeWriter.FieldPool.Record;
 import rest.dto.RecordDTO;
 import rest.service.RecordService;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @Service

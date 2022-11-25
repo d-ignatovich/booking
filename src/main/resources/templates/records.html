@@ -10,22 +10,19 @@
     <link rel="stylesheet" th:href="@{/styles/main.css}"/>
 </head>
 <body>
-
+<header th:insert="header :: header"></header>
 <main role="main" class="container" id="test">
     <div>
         <div class="button-new-record">
             <a class="btn btn-success" href="/create" type="GET">Добавить новое объявление</a>
         </div>
-        <div th:if="${records.empty}"> No Books Available </div>
+        <div th:if="${records.empty}" class="no-record"> Нет созданных объявлений </div>
         <div class="record-group" >
             <div class="record-alone" th:each="record : ${records}">
-                <div class="record-img">
-                    <!--<img src="${record.image}", width="200px">-->
-                    <div class="record-image">
-                        <a th:text="${record.image}"> Image </a>
-                    </div>
-                </div>
                 <div class="record-info">
+                    <div class="record-img">
+                        <imeg><img th:src="@{'../temp/' + ${record.image}}" alt="Image"></imeg>
+                    </div>
                     <div class="record-title">
                         <a th:text="${record.title}"> Title </a>
                     </div>
@@ -42,7 +39,7 @@
             </div>
         </div>
     </div>
-
+    <footer th:insert="footer :: footer"></footer>
 </main>
 </body>
 </html>
