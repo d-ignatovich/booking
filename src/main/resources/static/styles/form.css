@@ -1,0 +1,40 @@
+html{
+    height: 100%;
+}
+
+header {
+   background: #90EE90;
+   padding-left: 2%
+}
+
+footer {
+  /* Позиционируем footer внизу main */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  /* Высота footer по умолчанию */
+  height: 30px;
+  background: #90EE90;
+}
+
+.form-group {
+margin-bottom: 20px;
+}
+
+.form-group label{
+float: left;
+width: 30%;
+
+}
+
+.form-group input{
+display: block;
+width: 70%;
+}
+
+.exampleInputTitle{
+text-align:left
+}
+
+.form-group exampleInputBerth{weight:10%;}
