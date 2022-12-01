@@ -101,3 +101,34 @@ font-size: x-large;
 font-weight: bold;
 color:#C0C0C0	; /* Цвет заголовка */
 }
+
+.search_wrapper{
+    width: 100%;
+}
+
+.search-short_wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.search_section_geo{
+    width: 40%;
+}
+
+.search_section_price{
+    width: 60%;
+    text-align:center;
+}
+
+.section_geo[type=text]{
+    width:80%;
+}
+
+.section_price_from,
+.section_price_to,
+.section_geo[type=text]{
+    border-style: solid;
+    border-color: #2ea81b;
+    border-radius: 20px;
+}

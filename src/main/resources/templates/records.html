@@ -13,10 +13,30 @@
 <header th:insert="header :: header"></header>
 <main role="main" class="container" id="test">
     <div>
-        <div class="button-new-record">
-            <a class="btn btn-success" href="/create" type="GET">Добавить новое объявление</a>
-        </div>
         <div th:if="${records.empty}" class="no-record"> Нет созданных объявлений </div>
+        <div th:if="${records.empty}"> No Books Available </div>
+        <div class="search_wrapper">
+            <section class="search-short">
+                <div class="search-short_wrapper">
+                    <div class="search_section_geo">
+                        <input type="text" class="section_geo" placeholder="Адрес">
+                    </div>
+                    <div class="search_section_price">
+                        <label class="name_section_price_from">Цена от</label>
+                        <input class="section_price_from" type="text">
+                        <label class="name_section_price_to">до</label>
+                        <input class="section_price_to" type="text">
+                    </div>
+                    <div class="btn-search">
+                        <button class="btn btn-success" type="submit">Найти</button>
+                    </div>
+                </div>
+                <div>
+                    <input class="checkbox" type="checkbox">
+                    <label class="checkbox_str">Отображать мои объявления</label>
+                </div>
+            </section>
+        </div>
         <div class="record-group" >
             <div class="record-alone" th:each="record : ${records}">
                 <div class="record-info">
