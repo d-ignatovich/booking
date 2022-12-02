@@ -2,102 +2,138 @@ html{
   height: 100%;
 }
 body {
-position: relative;
-margin: 0;
-color: #000000;
-min-height: 100%;
+    position: relative;
+    margin: 0;
+    color: #000000;
+    min-height: 100%;
 }
 
 header {
- background: #90EE90;
- padding-left: 2%
+    background: #90EE90;
+    padding-left: 2%
 }
 
 main {
- /* Выставляем отступ с высотой footer по умолчанию */
-padding-bottom: 30px;
-background: #FFFFFF;
-width: 100%;
+     /* Выставляем отступ с высотой footer по умолчанию */
+    padding-bottom: 30px;
+    background: #FFFFFF;
+    width: 100%;
 }
 
 footer {
-/* Позиционируем footer внизу main */
-position: absolute;
-bottom: 0;
-left: 0;
-width: 100%;
-/* Высота footer по умолчанию */
-height: 30px;
-background: #90EE90;
+    /* Позиционируем footer внизу main */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Высота footer по умолчанию */
+    height: 30px;
+    background: #90EE90;
 }
 
 .record-info{ /* Блок контента */
-position:relative;
-display: inline-block;
-margin-top: 10px;
-margin-bottom: 5px;
-margin-right: 2%;
-width: 90%;
-min-height: 200px;
-background: #F0F8FF; /* Фон статьи */
-border-radius: 15px;
-box-shadow: rgba(5,5,5,5) 1px 2px 3px;
+    position:relative;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+    min-height: 200px;
+    background: #F0F8FF; /* Фон статьи */
+    border-radius: 15px;
+    box-shadow: rgba(5,5,5,5) 1px 2px 3px;
+
+}
+.record-info input{
+    padding-left: 55%;
 }
 
+.record-info textarea{
+    padding-left: 55%;
+}
 .record-img{ /* Картинка в тексте слева */
-display: inline-block;
-float: left;
-position: relative;
-top:40%;
-left:8%;
+    display: inline-block;
+    float: left;
+    position: relative;
+    top:40%;
+    padding-left:8%;
 }
 
 .record-title { /* Title */
-  position: relative;
-  display: block;
-  top:8%;
-  left:25%;
-  font-size: 32px;
-  font-weight: bold;
-  color:#FF0000	;
+    top:8%;
+    font-size: 32px;
+    font-weight: bold;
+    color:#FF0000	;
 }
 
 .record-address{
-position: relative;
-display: block;
-top:20%;
-left:25%;
-font-size: medium;
-font-weight: bold;
-color:#808080;
+    top:20%;
+    font-size: medium;
+    font-weight: bold;
+    color:#808080;
 }
 
 .record-description{
-position: relative;
-display: block;
-top:30%; left:25%;
-width: 70%;
-font-size: large;
-font-weight: bold;
-font-align: justify;
-color:#696969	;
+    top:30%;
+    width: 70%;
+    font-size: large;
+    font-weight: bold;
+    font-align: justify;
+    color:#696969	;
 }
 
 .record-rent{
-position: relative;
-display: block;
-top:45%; left:25%;
-font-size: x-large;
-font-weight: bold;
-color:#C0C0C0	;
+    top:45%;
+    font-size: x-large;
+    font-weight: bold;
+    color:#C0C0C0	;
 }
 
 .no-record{ /* No books */
-display: inline-block;
-top:35%;
-padding-left: 40%;
-font-align:center;/* Заголовок двигается верх-вправо-вниз-влево. */
-font-size: x-large;
-font-weight: bold;
-color:#C0C0C0	; /* Цвет заголовка */
+    display: inline-block;
+    top:35%;
+    padding-left: 40%;
+    font-align:center;/* Заголовок двигается верх-вправо-вниз-влево. */
+    font-size: x-large;
+    font-weight: bold;
+    color:#C0C0C0	; /* Цвет заголовка */
+}
+
+img {
+    width: 300px;
+    height: 300px;
+}
+
+/* Оформление строки поиска среди объявлений*/
+.search_wrapper{
+    width: 100%;
+
+}
+
+.search-short_wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
+
+.search_section_geo{
+    width: 40%;
+}
+
+.search_section_price{
+    width: 60%;
+    text-align:center;
+
+}
+
+.section_geo[type=text]{
+    width:80%;
+ }
+
+.section_price_from,
+.section_price_to,
+.section_geo[type=text]{
+    border-style: solid;
+    border-color: #2ea81b;
+    border-radius: 20px;
 }
