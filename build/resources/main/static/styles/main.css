@@ -31,61 +31,9 @@ footer {
     background: #90EE90;
 }
 
-.record-info{ /* Блок контента */
-    position:relative;
-    display: inline-block;
-    margin-top: 10px;
+.record-group{
+    padding-left, padding-right: 15%;
     margin-bottom: 5px;
-    width: 100%;
-    min-height: 200px;
-    background: #F0F8FF; /* Фон статьи */
-    border-radius: 15px;
-    box-shadow: rgba(5,5,5,5) 1px 2px 3px;
-
-}
-.record-info input{
-    padding-left: 55%;
-}
-
-.record-info textarea{
-    padding-left: 55%;
-}
-.record-img{ /* Картинка в тексте слева */
-    display: inline-block;
-    float: left;
-    position: relative;
-    top:40%;
-    padding-left:8%;
-}
-
-.record-title { /* Title */
-    top:8%;
-    font-size: 32px;
-    font-weight: bold;
-    color:#FF0000	;
-}
-
-.record-address{
-    top:20%;
-    font-size: medium;
-    font-weight: bold;
-    color:#808080;
-}
-
-.record-description{
-    top:30%;
-    width: 70%;
-    font-size: large;
-    font-weight: bold;
-    font-align: justify;
-    color:#696969	;
-}
-
-.record-rent{
-    top:45%;
-    font-size: x-large;
-    font-weight: bold;
-    color:#C0C0C0	;
 }
 
 .no-record{ /* No books */
@@ -99,9 +47,20 @@ footer {
 }
 
 img {
-    width: 300px;
-    height: 300px;
+    height: 350px;
+    width: 350px;
 }
+
+.title {
+    display: inline-block;
+    color: #2ea81b;
+}
+
+.description {
+    text-align: justify;
+    color: #696969;
+}
+
 
 /* Оформление строки поиска среди объявлений*/
 .search_wrapper{

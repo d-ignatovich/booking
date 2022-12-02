@@ -40,26 +40,21 @@
             </section>
         </div>
         <div th:if="${records.empty}" class="no-record"> Нет созданных объявлений </div>
+
         <div class="record-group" >
-            <div class="record-alone" th:each="record : ${records}">
-                <div class="record-info">
-                    <div class="record-img">
-                        <imeg><img th:src="@{'..\\temp\\' + ${record.image}}" alt="Image"></imeg>
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" th:each="record : ${records}">
+                    <div class="col-auto d-none d-lg-block">
+                        <div class="record-img">
+                            <imeg><img th:src="@{'..//temp//' + ${record.image}}" alt="Image"></imeg>
+                        </div>
                     </div>
-                    <div class="record-title">
-                        <a th:text="${record.title}"> Title </a>
-                    </div>
-                    <div class="record-address">
-                        <span th:text="${record.address}"> Address </span>
-                    </div>
-                    <div class="record-description">
-                        <span th:text="${record.description}"> Offer </span>
-                    </div>
-                    <div class="record-rent">
-                        <span th:text="${record.rent}"> Price </span>
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <h2 class="title" th:text="${record.title}">Title</h2>
+                        <h4 class="mb-0" th:text="${record.address}">Address</h4>
+                        <div class="description" th:text="${record.description}">Offer</div>
+                        <h4 class="card-text mb-auto"th:text="${record.rent}+₽"> Price </h4>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 <footer th:insert="footer :: footer"></footer>
