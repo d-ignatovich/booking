@@ -2,28 +2,32 @@ package rest.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
-import rest.dto.StudentDto;
 
+import net.bytebuddy.dynamic.scaffold.TypeWriter.FieldPool.Record;
+import rest.dto.RecordDTO;
+import rest.service.RecordService;
+
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
 public class HtmlPageService {
 
-    private final StudentService studentService;
+    private final RecordService recordService;
 
-    public HtmlPageService(StudentService studentService) {
-        this.studentService = studentService;
+    public HtmlPageService(RecordService recordService) {
+        this.recordService = recordService;
     }
 
-    public ModelAndView createStudentPage() {
-        return studentService.getAllStudents();
+    public ModelAndView createRecordPage() {
+        return recordService.getAllRecords();
     }
 
-    public ModelAndView createStudent(StudentDto studentDto) {
-        return studentService.createStudent(studentDto);
+    public ModelAndView createRecord(RecordDTO recordDTO) {
+        return recordService.createRecord(recordDTO);
     }
 
-    public void removeStudent(UUID id) {
-        studentService.removeStudentById(id);
+    public void removeRecord(UUID id) {
+        recordService.removeRecordById(id);
     }
 }

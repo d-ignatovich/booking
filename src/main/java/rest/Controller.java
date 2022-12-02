@@ -3,8 +3,8 @@ package rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import rest.dto.StudentDto;
 import rest.service.HtmlPageService;
+import rest.dto.RecordDTO;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -24,38 +24,27 @@ public class Controller {
      * метод возвращает html страницу, "resources/templates/welcome.html"
      **/
     @GetMapping(value = "/")
-    public ModelAndView welcome() {
+    public ModelAndView main() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("welcome"); // указываю какую страницу вернуть
-        modelAndView.getModel().put("message", "ПРИВЕТ "); // иньекция значений на страницу
-        return modelAndView;
-    }
-
-    /**
-     * Пример метода который будет вызываться по URL: http://localhost:8080/select/{имя_таблицы_в_которой_хотите_посмотреть_данные}
-     * метод возвращает html страницу, "resources/templates/show_table.html"
-     **/
-    @GetMapping(value = "/all-students")
-    public ModelAndView showStudents() {
-        return htmlPageService.createStudentPage();
+        return htmlPageService.createRecordPage();
     }
 
     @GetMapping(value = "/add-record")
-    public ModelAndView newStudent() {
+    public ModelAndView newRecord() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("new-record"); // указываю какую страницу вернуть
         return modelAndView;
     }
 
     @PostMapping(value = "/add-record")
-    public ModelAndView addStudent(StudentDto studentDto) {
-        return htmlPageService.createStudent(studentDto);
+    public ModelAndView addRecord(RecordDTO recordDTO) {
+        return htmlPageService.createRecord(recordDTO);
     }
 
     @GetMapping(value = "/remove/{id}")
-    public void removeStudent(@PathVariable(value = "id") UUID id, HttpServletResponse response, ModelAndView modelAndView) throws IOException {
+    public void removeRecord(@PathVariable(value = "id") UUID id, HttpServletResponse response, ModelAndView modelAndView) throws IOException {
         modelAndView.clear();
-        htmlPageService.removeStudent(id);
-        response.sendRedirect("/all-students");
+        htmlPageService.removeRecord(id);
+        response.sendRedirect("/");
     }
 }
