@@ -46,26 +46,10 @@ public class Controller {
         return htmlPageService.createRecord(recordDTO);
     }
 
-    @GetMapping(value = "/login")
-    public ModelAndView loginPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login"); // указываю какую страницу вернуть
-        return modelAndView;
-    }
-
-    @GetMapping(value = "/registration")
-    public ModelAndView registartionPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("registration"); // указываю какую страницу вернуть
-        return modelAndView;
-    }
-
     @GetMapping(value = "/remove/{id}")
     public void removeRecord(@PathVariable(value = "id") UUID id, HttpServletResponse response, ModelAndView modelAndView) throws IOException {
         modelAndView.clear();
         htmlPageService.removeRecord(id);
         response.sendRedirect("/");
     }
-
-
 }
