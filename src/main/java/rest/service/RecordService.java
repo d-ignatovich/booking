@@ -22,7 +22,7 @@ public class RecordService {
         this.recordRepository = recordRepository;
     }
 
-    public ModelAndView createRecord(RecordDTO recordDTO) {
+    public List<RecordDTO> createRecord(RecordDTO recordDTO) {
         Record record = new Record();
         record.setId(UUID.fromString(recordDTO.getId()));
         record.setTitle(recordDTO.getTitle());
@@ -35,7 +35,7 @@ public class RecordService {
         return getAllRecords();
     }
 
-    public ModelAndView getAllRecords() {
+    public List<RecordDTO> getAllRecords() {
         List<Record> records = recordRepository.getAllRecords();
         List<RecordDTO> resultList = new ArrayList<>();
         for (Record record : records) {
@@ -49,13 +49,13 @@ public class RecordService {
             recordDTO.setImage(record.getImage());
             resultList.add(recordDTO);
         }
-        return createAndFillModel(resultList);
+        return resultList;
     }
 
     private ModelAndView createAndFillModel(List<RecordDTO> recordDTOs) {
-        ModelAndView modelAndView = new ModelAndView("forward:/");
+        ModelAndView modelAndView = new ModelAndView();
         modelAndView.getModel().put("records", recordDTOs);
-        modelAndView.setViewName("records");
+        modelAndView.setViewName("overview");
         return modelAndView;
     }
 

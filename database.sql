@@ -14,4 +14,19 @@ create table record(
     primary key (id)
 );
 
-select * from record;
+create table role(
+	id int,
+    name varchar(64),
+    primary key (id)
+);
+
+create table user(
+	id int,
+    username varchar(64),
+    password varchar(64),
+    passwordConfirm varchar(64),
+    primary key (id)
+);
+
+INSERT INTO role(id, name)
+  VALUES (1, 'ROLE_USER'), (2, 'ROLE_ADMIN');
