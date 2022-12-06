@@ -20,5 +20,5 @@ public class RecordDTO {
     private Integer rent;
     private String description;
     private String image;
-
+    private String userId;
 }

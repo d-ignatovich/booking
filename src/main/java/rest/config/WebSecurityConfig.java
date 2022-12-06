@@ -31,9 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web
-        .ignoring()
-        .antMatchers("/resources/static/**", "/resources/templates/**");;
+        web.ignoring().antMatchers("/styles/**");
 }
 
     @Override
@@ -48,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/admin/**").hasRole("ADMIN")
                     .antMatchers("/api/**").hasRole("USER")
                     //Доступ разрешен всем пользователей
-                    .antMatchers( "/resources/**", "/", "/css/**").permitAll()
+                    .antMatchers( "/resources/**").permitAll()
                 //Все остальные страницы требуют аутентификации
                 .anyRequest().authenticated()
                 .and()
@@ -56,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .formLogin()
                     .loginPage("/login")
                     //Перенарпавление на главную страницу после успешного входа
-                    .defaultSuccessUrl("/overview")
+                    .defaultSuccessUrl("/overview", true)
                     .permitAll()
                 .and()
                     .logout()

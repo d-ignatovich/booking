@@ -24,6 +24,9 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
+    @OneToMany(mappedBy="user")
+    private Set<Record> records;
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();

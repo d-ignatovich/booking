@@ -1,5 +1,6 @@
 package rest.service;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -7,6 +8,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import rest.dto.RecordDTO;
 import rest.persistence.repository.RecordRepository;
 import rest.persistence.entity.Record;
+import rest.persistence.entity.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ public class RecordService {
         this.recordRepository = recordRepository;
     }
 
-    public List<RecordDTO> createRecord(RecordDTO recordDTO) {
+    public List<RecordDTO> createRecord(RecordDTO recordDTO, User user) {
         Record record = new Record();
         record.setId(UUID.fromString(recordDTO.getId()));
         record.setTitle(recordDTO.getTitle());
@@ -31,6 +33,7 @@ public class RecordService {
         record.setRent(recordDTO.getRent());
         record.setDescription(recordDTO.getDescription());
         record.setImage(recordDTO.getImage());
+        record.setUser(user);
         recordRepository.save(record);
         return getAllRecords();
     }
@@ -47,16 +50,10 @@ public class RecordService {
             recordDTO.setRent(record.getRent());
             recordDTO.setDescription(record.getDescription());
             recordDTO.setImage(record.getImage());
+            recordDTO.setUserId(record.getUser().getId().toString());
             resultList.add(recordDTO);
         }
         return resultList;
-    }
-
-    private ModelAndView createAndFillModel(List<RecordDTO> recordDTOs) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.getModel().put("records", recordDTOs);
-        modelAndView.setViewName("overview");
-        return modelAndView;
     }
 
     public void removeRecordById(UUID id) {

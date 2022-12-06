@@ -4,6 +4,9 @@ package rest.api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +43,7 @@ public class Controller implements Api {
         modelAndView.clear();
         modelAndView.setViewName("overview");
         modelAndView.getModel().put("records", recordService.getAllRecords());
+        modelAndView.getModel().put("userId", getCurrentUser().getId().toString());
         return modelAndView;
     }
 
@@ -59,7 +63,7 @@ public class Controller implements Api {
     }
 
     @Override
-    public void addRecord(RecordDTO recordDTO, @RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
+    public void addRecord(RecordDTO recordDTO, @RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException, InterruptedException {
         recordDTO.setId(UUID.randomUUID().toString());
         if (file.isEmpty()) {
             recordDTO.setImage("default.jpg");
@@ -67,7 +71,7 @@ public class Controller implements Api {
             recordDTO.setImage(UUID.randomUUID().toString() + ".jpg");
             FileUploadService.saveFile(recordDTO.getImage(), file);
         }
-        recordService.createRecord(recordDTO);
+        recordService.createRecord(recordDTO, getCurrentUser());
         response.sendRedirect("/");
     }
     
@@ -94,17 +98,19 @@ public class Controller implements Api {
     public ModelAndView addUser(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, ModelAndView model) {
         model.setViewName("registration");
         if (bindingResult.hasErrors()) {
-            logger.error(bindingResult.toString());
             return model;
         }
         if (!userService.saveUser(userForm)) {
-            logger.error("Здесь");
             model.getModel().put("usernameError", "Пользователь с таким именем уже существует");
             return model;
         }
+
         model.clear();
         model.setView(new RedirectView("/login"));
         return model;
     }
 
+    public User getCurrentUser() {
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
 }
