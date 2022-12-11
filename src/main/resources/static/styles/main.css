@@ -47,7 +47,7 @@ footer {
     color:#C0C0C0	; /* Цвет заголовка */
 }
 
-img {
+.image {
     height: 350px;
     width: 350px;
 }
@@ -96,4 +96,9 @@ img {
     border-style: solid;
     border-color: #2ea81b;
     border-radius: 20px;
+}
+
+.ticker {
+    width: 16px;
+    height: 16px;
 }
