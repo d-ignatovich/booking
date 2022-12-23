@@ -19,17 +19,45 @@
         <div class="search_wrapper">
             <section class="search-short">
                 <div class="search-short_wrapper">
-                    <div class="search_section_geo">
-                        <input type="text" class="section_geo" placeholder="Адрес" id="address">
+                    <div class="search-short_wrapper_left">
+                        <div class="search_section_geo">
+                            <input type="text" class="section_geo" placeholder="Адрес">
+                        </div>
+                        <div class="search_section_price">
+                            <label class="name_section_price_from">Цена от</label>
+                            <input type="number" class="section_price_from">
+                            <label class="name_section_price_to">до</label>
+                            <input type="number" class="section_price_to">
+                            <label class="section_price_mark">руб/ночь</label>
+                        </div>
                     </div>
-                    <div class="search_section_price">
-                        <label class="name_section_price_from" id="test">Цена от</label>
-                        <input type="number" class="section_price_from" id="bottomPrice">
-                        <label class="name_section_price_to">до</label>
-                        <input type="number" class="section_price_to" id="topPrice">
-                    </div>
-                    <div class="btn-search">
-                        <button class="btn btn-success" onclick="filter()">Найти</button>
+                    <div class="search-short_wrapper_right">
+                        <div class="search_section_person-date">
+                            <div class="search_section_person">
+                                <label class="name_section_person"></label>
+                                <input type="number" class="section_person_in">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4726/4726440.png"
+                                     alt="" class="person-icon">
+                            </div>
+                            <div class="search_section_date">
+                                <div class="section_date_from-to">
+                                    <div class="section_date_from">
+                                        <input type="date" class="section_date_from_in">
+                                    </div>
+                                    <div class="section_date_to">
+                                        <input type="date" class="section_date_to_in">
+                                    </div>
+                                </div>
+                                <img src="https://cdn-icons-png.flaticon.com/512/54/54332.png"
+                                     alt="" class="date-icon">
+                            </div>
+                        </div>
+                        <div class="btns-search">
+                            <div class="btn-search">
+                                <button class="btn btn-success" type="submit">Найти</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div>
@@ -53,6 +81,7 @@
                     <h4 class="mb-0" th:text="${record.address}">Address</h4>
                     <div class="description" th:text="${record.description}">Offer</div>
                     <h4 class="card-text mb-auto"th:text="${record.rent}+₽"> Price </h4>
+                    <button class="btn btn-outline-success" th:unless="${userId eq record.userId}" th:href="create">Забронировать</button>
                 </div>
             </record>
         </div>

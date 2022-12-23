@@ -100,9 +100,16 @@ public class Controller implements Api {
         if (bindingResult.hasErrors()) {
             return model;
         }
-        if (!userService.saveUser(userForm)) {
-            model.getModel().put("usernameError", "Пользователь с таким именем уже существует");
+        if (userService.findUserByEmail(userForm) != null) {
+            model.getModel().put("usernameError", "Пользователь с такой почтой уже существует.");
             return model;
+        }
+        else if (userService.allUsers().stream().filter(user -> user.getPhone().equals(userForm.getPhone())).findFirst().orElse(null) != null) {
+            model.getModel().put("phoneError", "Пользователь с таким номером телефона уже существует.");
+            return model;
+        }
+        else {
+            userService.saveUser(userForm);
         }
 
         model.clear();
