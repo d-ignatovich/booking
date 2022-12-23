@@ -57,15 +57,15 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public boolean saveUser(User user) {
-        User userFromDB = userRepository.findByEmail(user.getEmail());
-        if (userFromDB != null) {
-            return false;
-        }
+    public void saveUser(User user) {
         user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        return true;
+    }
+
+    public User findUserByEmail(User user) {
+        User userFromDB = userRepository.findByEmail(user.getEmail());
+        return userFromDB;
     }
 
     public boolean deleteUser(Long userId) {
