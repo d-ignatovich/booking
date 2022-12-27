@@ -8,6 +8,6 @@ public class ApiUrls {
     public static final String LOGIN = "/login";
     public static final String POST_LOGIN = "/login";
     public static final String ADD_RECORD = "/create";
-    public static final String REMOVE_RECORD = "/api/remove/{id}";
+    public static final String FIND_RECORD = "/{id}";
 
 }

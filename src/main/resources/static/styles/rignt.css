@@ -1,0 +1,207 @@
+html{
+height: 100%;
+}
+body {
+  position: relative;
+  margin: 0;
+  color: #000000;
+  min-height: 100%;
+}
+
+header {
+  background: #90EE90;
+  padding-left: 2%
+}
+
+main {
+   /* Выставляем отступ с высотой footer по умолчанию */
+  padding-bottom: 30px;
+  background: #FFFFFF;
+  width: 100%;
+}
+
+footer {
+  /* Позиционируем footer внизу main */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  /* Высота footer по умолчанию */
+  height: 30px;
+  background: #90EE90;
+}
+
+.record-group{
+  padding-left: 15%;
+  padding-right: 15%;
+  margin-bottom: 5px;
+}
+
+.no-record{ /* No books */
+  display: inline-block;
+  top:35%;
+  padding-left: 40%;
+  font-align:center;/* Заголовок двигается верх-вправо-вниз-влево. */
+  font-size: x-large;
+  font-weight: bold;
+  color:#C0C0C0	; /* Цвет заголовка */
+}
+
+img {
+  height: 350px;
+  width: 350px;
+}
+
+.title {
+  display: inline-block;
+  color: #2ea81b;
+}
+
+.description {
+  text-align: justify;
+  color: #696969;
+}
+
+
+/* Оформление строки поиска среди объявлений*/
+.search_wrapper{
+  width: 100%;
+  padding-left: 15%;
+  padding-right: 15%;
+
+}
+
+.search-short_wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.search-short_wrapper_left {
+  width: 40%;
+}
+
+.search_section_geo{
+  width: 100%;
+}
+
+.search_section_price{
+  width: 100%;
+  display: flex;
+  text-align:center;
+}
+
+.search_section_geo{
+  background-color: green;
+  width:80%;
+}
+
+.section_geo[type=text]{
+  width:80%;
+}
+
+.search_section_price{
+  background-color: blue;
+  width:120%;
+}
+
+.section_price_from{
+  width: 30%;
+  height: 30px;
+}
+
+.section_price_to{
+  width: 30%;
+  height: 30px;
+}
+
+.search-short_wrapper_right{
+  position: relative;
+}
+
+.btn-search{
+  float: right;
+}
+
+.search_section_person-date{
+  text-align: center;
+}
+
+.search_section_person{
+  width: 20%;
+  display: inline-flex;
+}
+
+.section_person_in{
+  width: 100%;
+}
+
+.person-icon{
+  width: 25px;
+  height: 25px;
+  margin-right: 0;
+  order: -1;
+}
+
+.search_section_date{
+  display: inline-flex;
+  width: 75%;
+}
+
+.section_date_from-to{
+  display: inline-flex;
+  width:80%;
+  float:left;
+}
+
+.section_date_from{
+  display: inline-block;
+  width:50%;
+}
+
+.section_date_from_in{
+  width:100%;
+}
+
+.section_date_to{
+  display: inline-block;
+  width:50%;
+}
+
+.section_date_to_in{
+  width:100%;
+}
+
+.date-icon{
+   width: 25px;
+   height: 25px;
+   margin-right: 0;
+   order: 1;
+}
+
+.search_section_geo,
+.search_section_price,
+.section_person_in,
+.section_date_from-to{
+  border-style: solid;
+  border-color: #2ea81b;
+  border-radius: 20px;
+  background-color: #2ea81b;
+  margin-bottom: 1rem
+}
+
+.section_geo,
+.section_price_from,
+.section_price_to,
+.section_person_in,
+.section_date_from_in,
+.section_date_to_in{
+  border-style: solid;
+  border-color: #2ea81b;
+  border-radius: 20px;
+}
+
+.ticker {
+  width: 16px;
+  height: 16px;
+}

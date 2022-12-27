@@ -4,22 +4,24 @@ package rest.api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import rest.dto.RecordDTO;
+import rest.persistence.entity.Record;
 import rest.persistence.entity.User;
+import rest.persistence.repository.RecordRepository;
 import rest.service.RecordService;
 import rest.service.UserService;
 import rest.service.FileUploadService;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -36,6 +38,8 @@ public class Controller implements Api {
     private FileUploadService fileUploadService;
 
     Logger logger = LoggerFactory.getLogger(Controller.class);
+    @Autowired
+    private RecordRepository recordRepository;
 
     @Override
     public ModelAndView overview() {
@@ -74,12 +78,12 @@ public class Controller implements Api {
         recordService.createRecord(recordDTO, getCurrentUser());
         response.sendRedirect("/");
     }
-    
+
     @Override
     public void removeRecord(@PathVariable(value = "id") UUID id, HttpServletResponse response, ModelAndView modelAndView) throws IOException {
         modelAndView.clear();
         recordService.removeRecordById(id);;
-        response.sendRedirect("/");
+        response.sendRedirect("/{id}");
     }
 
     @GetMapping("/")
@@ -120,4 +124,15 @@ public class Controller implements Api {
     public User getCurrentUser() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
+
+    @GetMapping("/{id}")
+    public ModelAndView findRecord(@PathVariable(value = "id") UUID id, HttpServletResponse response, ModelAndView model) throws IOException {
+        Optional<Record> record = recordRepository.findById(id);
+        ArrayList<Record> res = new ArrayList<>();
+        record.ifPresent(res::add);
+        model.setViewName("book");
+        model.getModel().put("record", res);
+        return model;
+        }
+
 }

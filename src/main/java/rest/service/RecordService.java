@@ -1,18 +1,15 @@
 package rest.service;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import rest.dto.RecordDTO;
 import rest.persistence.repository.RecordRepository;
 import rest.persistence.entity.Record;
 import rest.persistence.entity.User;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -56,7 +53,11 @@ public class RecordService {
         return resultList;
     }
 
+    public void findRecordById(UUID id) {
+        Optional<Record> record = recordRepository.findById(id);
+        ArrayList<Record> res = new ArrayList<>();
+        record.ifPresent(res :: add);
+    }
     public void removeRecordById(UUID id) {
-        recordRepository.deleteById(id);
     }
 }
