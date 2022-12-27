@@ -12,9 +12,9 @@ function filter() {
         var recordPrice = Number(records[i].getElementsByTagName("h4")[1].textContent.slice(0, -1));
         var ticker = records[i].getElementsByClassName("ticker").length;
         if (recordAddress.indexOf(requiredAddress) != -1 && recordPrice <= topPrice && recordPrice >= bottomPrice && (ifUsersRecords && ticker || !ifUsersRecords)) {
-            records[i].style.display = "";
+            records[i].hide();
         } else {
-            records[i].style.display = "none";
+            records[i].hide();
         }
     }
 }

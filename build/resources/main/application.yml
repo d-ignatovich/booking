@@ -2,12 +2,16 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/web
     username: root
-    password: keyq
+    password: 12345
     driver-class-name: com.mysql.jdbc.Driver
     #driver-class-name: org.postgresql.Driver
     initialization-mode: never
   thymeleaf:
     cache: false
+  servlet:
+    multipart:
+      max-file-size: 128KB
+      max-request-size: 128KB
     
 server:
   port: 8080
