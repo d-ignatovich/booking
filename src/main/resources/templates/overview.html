@@ -21,13 +21,13 @@
                 <div class="search-short_wrapper">
                     <div class="search-short_wrapper_left">
                         <div class="search_section_geo">
-                            <input type="text" class="section_geo" placeholder="Адрес">
+                            <input type="text" class="section_geo" placeholder="Адрес" id="address">
                         </div>
                         <div class="search_section_price">
                             <label class="name_section_price_from" >Цена от</label>
-                            <input type="number" class="section_price_from" min="1">
+                            <input type="number" class="section_price_from" min="1" id="bottomPrice">
                             <label class="name_section_price_to">до</label>
-                            <input type="number" class="section_price_to" min="1">
+                            <input type="number" class="section_price_to" min="1" id="topPrice">
                             <label class="section_price_mark">руб/ночь</label>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="btns-search">
                             <div class="btn-search">
-                                <button class="btn btn-success" type="submit">Найти</button>
+                                <button class="btn btn-success" type="submit" onclick="filter()">Найти</button>
                             </div>
                         </div>
 

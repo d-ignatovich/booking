@@ -6,3 +6,4 @@
 /out/production/classes/
 /bin/
 /build/
+src/main/resources/application.yml

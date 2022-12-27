@@ -37,17 +37,17 @@ create table user_roles (
 );
 
 create table book(
-id int not null auto_increment,
-name varchar(64) not null,
-people int not null,
-date_start date not null,
-date_finish date not null,
-phone int not null,
-primary key (id),
-user_id int,
-foreign key (user_id) references user (id),
-record_id binary,
-foreign key (record_id) references record (id)
+    id int not null auto_increment,
+    name varchar(64) not null,
+    people int not null,
+    date_start date not null,
+    date_finish date not null,
+    phone int not null,
+    primary key (id),
+    user_id int,
+    foreign key (user_id) references user (id),
+    record_id binary,
+    foreign key (record_id) references record (id)
 );
 
 INSERT INTO role(id, name)
