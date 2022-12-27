@@ -14,7 +14,7 @@
 <body>
 
 <header th:insert="header :: header"></header>
-<main role="main" class="container" id="test">
+<main role="main" class="container">
     <div>
         <div class="search_wrapper">
             <section class="search-short">
@@ -35,17 +35,17 @@
                         <div class="search_section_person-date">
                             <div class="search_section_person">
                                 <label class="name_section_person"></label>
-                                <input type="number" min="1" class="section_person_in">
+                                <input type="number" min="1" class="section_person_in" id="berth" name="berth" form="form" required>
                                 <img src="https://cdn-icons-png.flaticon.com/512/4726/4726440.png"
                                      alt="" class="person-icon">
                             </div>
                             <div class="search_section_date">
                                 <div class="section_date_from-to">
                                     <div class="section_date_from">
-                                        <input type="date" class="section_date_from_in" min="today">
+                                        <input type="date" class="section_date_from_in" id="start" name="start" form="form" required>
                                     </div>
                                     <div class="section_date_to">
-                                        <input type="date" class="section_date_to_in">
+                                        <input type="date" class="section_date_to_in" id="end" name="end" form="form" required>
                                     </div>
                                 </div>
                                 <img src="https://cdn-icons-png.flaticon.com/512/54/54332.png"
@@ -81,7 +81,9 @@
                     <h4 class="mb-0" th:text="${record.address}">Address</h4>
                     <div class="description" th:text="${record.description}">Offer</div>
                     <h4 class="card-text mb-auto"th:text="${record.rent}+₽"> Price </h4>
-                    <a th:href="${record.id}" th:unless="${userId eq record.userId}" class="btn btn-success">Забронировать</a>
+                    <form th:unless="${userId eq record.userId}" action="#" th:action="@{/} + ${record.id}" method="get" id="form">
+                        <button class="btn btn-success" type="submit">Забронировать</button>
+                    </form>
                 </div>
             </record>
         </div>
@@ -89,4 +91,5 @@
 <footer th:insert="footer :: footer"></footer>
 </main>
 </body>
+<script src="/js/dates.js"></script>
 </html>

@@ -15,26 +15,30 @@
 
 <body>
 <header th:insert="header :: header"></header>
+
 <main role="main" class="container">
-  <div th:each="el : ${record}">
-    <h2 class="title" th:text="${el.title}">Title</h2>
-    <h4 class="mb-0" th:text="${el.address}">Address</h4>
-    <p class="description" th:text="${el.description}">Offer</p>
+    <div th:each="el : ${record}">
+      <h2 class="title" th:text="${el.title}">Title</h2>
+      <h4 class="mb-0" th:text="${el.address}">Address</h4>
+      <p class="description" th:text="${el.description}">Offer</p>
 
-    <h4>Даты бронирования: </h4>
-    <h4>Количество человек: </h4>
+      <h4>Даты бронирования: </h4>
+      <h2 class="title" th:text="${start}">Title</h2>
+      <h2 class="title" th:text="${end}">Title</h2>
+      <h4>Количество человек: </h4>
+      <h2 class="title" th:text="${berth}">Title</h2>
 
-    <h2>Забронировать на имя</h2>
-    <label>ФИО: </label>
-    <input type="text" class="form-control" id="exampleInputTitle" name="title" placeholder="ФИО" required>
-    <label>Телефон: </label>
-    <input type="text" class="form-control" id="exampleInputTel" name="tel" placeholder="Телефон" required>
-    <h4 class="card-text mb-auto"> Price </h4>
-  </div>
-  <div class="text-center">
-    <button class="btn btn-success" type="submit">Забронировать</button>
-    <a class="btn btn-secondary" href="/">Вернуться</a>
-  </div>
+      <h2>Забронировать на имя</h2>
+      <label>ФИО: </label>
+      <input type="text" class="form-control" id="exampleInputTitle" name="title" placeholder="ФИО" required>
+      <label>Телефон: </label>
+      <input type="text" class="form-control" id="exampleInputTel" name="tel" placeholder="Телефон" required>
+      <h4 class="card-text mb-auto"> Price </h4>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-success" type="submit">Забронировать</button>
+      <a class="btn btn-secondary" href="/">Вернуться</a>
+    </div>
 </main>
 </body>
 </html>

@@ -18,6 +18,8 @@ import rest.persistence.repository.RecordRepository;
 import rest.service.RecordService;
 import rest.service.UserService;
 import rest.service.FileUploadService;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -126,13 +128,21 @@ public class Controller implements Api {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView findRecord(@PathVariable(value = "id") UUID id, HttpServletResponse response, ModelAndView model) throws IOException {
+    public ModelAndView findRecord(@PathVariable(value = "id") UUID id, ModelAndView model, HttpServletRequest request) throws IOException {
+        String start = request.getParameter("start");
+        String end = request.getParameter("end");
+        String berth = request.getParameter("berth");
         Optional<Record> record = recordRepository.findById(id);
         ArrayList<Record> res = new ArrayList<>();
         record.ifPresent(res::add);
         model.setViewName("book");
         model.getModel().put("record", res);
+        model.getModel().put("start", start);
+        model.getModel().put("end", end);
+        model.getModel().put("berth", berth);
         return model;
-        }
+    }
+
+    
 
 }
