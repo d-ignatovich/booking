@@ -3,6 +3,7 @@ package rest.api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +45,7 @@ public class Controller implements Api {
     Logger logger = LoggerFactory.getLogger(Controller.class);
     @Autowired
     private RecordRepository recordRepository;
+
 
     @Override
     public ModelAndView overview() {
@@ -91,13 +93,14 @@ public class Controller implements Api {
         response.sendRedirect("/{id}");
     }
 
+
+
     @Override
     public ModelAndView bookings() {
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.clear();
             modelAndView.setViewName("bookings");
-            modelAndView.getModel().put("bookings", bookService.getAllBooks());
-            modelAndView.getModel().put("userId", getCurrentUser().getId().toString());
+            modelAndView.getModel().put("booksByRecord", bookService.getAllBooksByRecord(getCurrentUser().getId()));
             return modelAndView;
         }
 

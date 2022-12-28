@@ -1,5 +1,8 @@
 package rest.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import rest.dto.BookDTO;
@@ -7,15 +10,19 @@ import rest.persistence.repository.BookRepository;
 import rest.persistence.entity.Book;
 import rest.persistence.entity.Record;
 import rest.persistence.entity.User;
+import rest.persistence.repository.RecordRepository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 public class BookService {
 
+    @Autowired
+    private RecordRepository recordRepository;
     private final BookRepository bookRepository;
 
     public BookService(BookRepository bookRepository) {
@@ -35,20 +42,28 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public List<BookDTO> getAllBooks() {
-        var books = bookRepository.findAll();
-        return books.stream()
-                .map(book -> {
-                    var BookDTO = new BookDTO();
-                    BookDTO.setId(book.getId().toString());
-                    BookDTO.setPhone(book.getPhone());
-                    BookDTO.setName(book.getName());
-                    BookDTO.setPeople(book.getPeople().toString());
-                    BookDTO.setDate_start(book.getDate_start().toString());
-                    BookDTO.setDate_end(book.getDate_end().toString());
-                    return BookDTO;
-                })
-                .collect(Collectors.toList());
+    //public Map<Record,List<BookDTO>> getAllBooks() {
+    public Map<Record,List<BookDTO>> getAllBooksByRecord(long currentUserId) {
+        return recordRepository.findAll().stream()
+
+                .collect(Collectors.toMap(
+                        record -> record,
+                        record -> bookRepository.findAll().stream()
+                                .filter(book -> book.getRecord().equals(record) && book.getUser().getId()==currentUserId)
+                                .map(book -> {
+                                    var BookDTO = new BookDTO();
+                                    BookDTO.setId(book.getId().toString());
+                                    BookDTO.setPhone(book.getPhone());
+                                    BookDTO.setName(book.getName());
+                                    BookDTO.setPeople(book.getPeople().toString());
+                                    BookDTO.setDate_start(book.getDate_start().toString());
+                                    BookDTO.setDate_end(book.getDate_end().toString());
+                                    return BookDTO;
+                                })
+                                .collect(Collectors.toList())))
+                .entrySet().stream()
+                .filter(booksByRecord->booksByRecord.getValue().size()>0)
+                .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
 
     }
 }
