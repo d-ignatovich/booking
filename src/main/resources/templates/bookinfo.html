@@ -1,4 +1,4 @@
-=<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"/>
 <html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"/>
 <head>
@@ -12,30 +12,36 @@
   <script src="/js/filters.js"></script>
 </head>
 
-
 <body>
 <header th:insert="header :: header"></header>
 
 <main role="main" class="container">
-  <div th:each="el : ${record}">
-    <h2 class="title" th:text="${el.title}">Title</h2>
-    <h4 class="mb-0" th:text="${el.address}">Address</h4>
-    <p class="description" th:text="${el.description}">Offer</p>
 
-    <h4>Даты бронирования: </h4>
-    <h2 class="title" th:text="${book.date_start}"></h2>
-    <h2 class="title" th:text="${book.date_finish}"></h2>
-    <h2 class="title" th:text="${daysBetween}"></h2>
-    <h4>Количество человек: </h4>
-    <h2 class="title" th:text="${berth}">Title</h2>
+  <div th:if="${books.empty}" class="no-record"> Нет забронированных объявлений </div>
 
-    <h2>Контактное лицо</h2>
-    <label>ФИО:</label>
-    <h2 class="title" th:text="${book.name}"></h2>
-    <label>Телефон:</label>
-    <h2 class="title" th:text="${book.phone}"></h2>
-    <h4 class="card-text mb-auto"th:text="${record.rent}+₽"> Общая стоимость </h4>
+  <div class="record-group" id="group">
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col-auto d-none d-lg-block" th:each="record : ${records}">
+        <div class="record-img">
+          <img class="image" th:src="@{'../temp/' + ${record.image}}" alt="Image">
+        </div>
+      </div>
+      <div class="col p-4 d-flex flex-column position-static" th:each="record : ${records}">
+        <h2 class="title" th:text="${record.title}">Title</h2>
+        <h4 class="mb-0" th:text="${record.address}">Address</h4>
+      </div>
+      <div class="col p-4 d-flex flex-column position-static" th:each="book : ${books}">
+        <h4>Даты бронирования: </h4>
+        <h2 class="mb-0" th:text="${book.date_start}"></h2>
+        <h2 class="mb-0" th:text="${book.date_end}"></h2>
+        <h2 class="mb-0" th:text="${daysBetween}"></h2>
+        <h4>Количество человек: </h4>
+        <h2 class="card-text mb-auto" th:text="${berth}">People</h2>
+        <button class="btn btn-success" type="submit">Подробнее</button>
+      </div>
+    </div>
   </div>
+
   <div class="text-center">
     <a class="btn btn-secondary" href="/">Выход</a>
   </div>
