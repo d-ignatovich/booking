@@ -1,6 +1,5 @@
 package rest.api;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import rest.dto.BookDTO;
 import rest.dto.RecordDTO;
 import rest.persistence.entity.Record;
 import rest.persistence.entity.User;
 import rest.persistence.repository.RecordRepository;
 import rest.service.RecordService;
 import rest.service.UserService;
+import rest.service.BookService;
 import rest.service.FileUploadService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +45,9 @@ public class Controller implements Api {
 
     @Autowired
     private FileUploadService fileUploadService;
+
+    @Autowired
+    private BookService bookService;
 
     Logger logger = LoggerFactory.getLogger(Controller.class);
     @Autowired
@@ -133,26 +137,30 @@ public class Controller implements Api {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
-    @GetMapping("/{id}")
-    public ModelAndView findRecord(@PathVariable(value = "id") UUID id, ModelAndView model, HttpServletRequest request) throws IOException, ParseException {
+    @GetMapping("book/{id}")
+    public ModelAndView formBook(@PathVariable(value = "id") UUID id, ModelAndView model, HttpServletRequest request) throws IOException, ParseException {
+        Record record = recordRepository.findById(id).get();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
         Date start = sdf.parse(request.getParameter("start"));
         Date end = sdf.parse(request.getParameter("end"));
         String berth = request.getParameter("berth");
         long daysBetween = TimeUnit.MILLISECONDS.toDays(end.getTime() - start.getTime());
-        Optional<Record> record = recordRepository.findById(id);
-        ArrayList<Record> res = new ArrayList<>();
-        record.ifPresent(res::add);
         model.setViewName("book");
-        model.getModel().put("record", res);
+        model.getModel().put("record", record);
         model.getModel().put("start", form.format(start));
         model.getModel().put("end", form.format(end));
         model.getModel().put("daysBetween", daysBetween);
-        model.getModel().put("berth", berth);
+        model.getModel().put("people", berth);
         return model;
     }
 
-    
+    @PostMapping("/book/{id}")
+    public void createBook(@PathVariable(value = "id") UUID id, BookDTO bookDTO, HttpServletResponse response) throws ParseException, IOException {
+        Record record = recordRepository.findById(id).get();
+        bookDTO.setId(UUID.randomUUID().toString());
+        bookService.createBook(bookDTO, getCurrentUser(), record);
+        response.sendRedirect("/");
+    }
 
 }

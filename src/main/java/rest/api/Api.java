@@ -23,6 +23,4 @@ public interface Api {
     @PostMapping(value = ApiUrls.ADD_RECORD) void addRecord(RecordDTO recordDTO, @RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException, InterruptedException;
 
     @GetMapping void removeRecord(@PathVariable(value = "id") UUID id, HttpServletResponse response, ModelAndView modelAndView) throws IOException;
-
-    @GetMapping(value = ApiUrls.FIND_RECORD) ModelAndView findRecord(@PathVariable(value = "id") UUID id, ModelAndView modelAndView, HttpServletRequest request) throws IOException, ParseException;
 }

@@ -15,18 +15,19 @@ import java.util.UUID;
 @Table (name = "book")
 public class Book {
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private Integer people;
     private Date date_start;
-    private Date date_finish;
-    private Integer phone;
+    private Date date_end;
+    private String phone;
 
     @ManyToOne
     @JoinColumn (name="user_id", nullable=false)
     private User user;
 
     @ManyToOne
-    @JoinColumn (name="record", nullable=false)
+    @JoinColumn (name="record_id", nullable=false)
     private Record record;
 }

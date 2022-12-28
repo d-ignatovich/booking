@@ -81,7 +81,8 @@
                     <h4 class="mb-0" th:text="${record.address}">Address</h4>
                     <div class="description" th:text="${record.description}">Offer</div>
                     <h4 class="card-text mb-auto"th:text="${record.rent}+₽"> Price </h4>
-                    <form th:unless="${userId eq record.userId}" action="#" th:action="@{/} + ${record.id}" method="get" id="form">
+                    <div class="berth" hidden="hidden" th:text="${record.berth}"></div>
+                    <form th:unless="${userId eq record.userId}" action="#" th:action="@{/book/} + ${record.id}" method="get" id="form">
                         <button class="btn btn-success" type="submit">Забронировать</button>
                     </form>
                 </div>
