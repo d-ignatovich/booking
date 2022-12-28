@@ -1,6 +1,9 @@
 # Project exclude paths
 /.gradle/
 /.idea/
+/.vscode/
 /out/
 /out/production/classes/
 /bin/
+/build/
+src/main/resources/application.yml
