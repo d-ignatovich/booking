@@ -58,6 +58,15 @@ public class Controller implements Api {
         modelAndView.getModel().put("userId", getCurrentUser().getId().toString());
         return modelAndView;
     }
+    @Override
+    public ModelAndView book() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.clear();
+        modelAndView.setViewName("book");
+        modelAndView.getModel().put("book", recordService.getAllRecords());
+        modelAndView.getModel().put("userId", getCurrentUser().getId().toString());
+        return modelAndView;
+    }
 
     
     @Override

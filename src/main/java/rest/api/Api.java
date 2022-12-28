@@ -18,6 +18,7 @@ import java.util.UUID;
 
 public interface Api {
     @GetMapping(value = ApiUrls.OVERVIEW) ModelAndView overview();
+    @GetMapping(value = ApiUrls.BOOK) ModelAndView book();
     @GetMapping(value = ApiUrls.LOGIN) ModelAndView login();
     @GetMapping(value = ApiUrls.ADD_RECORD) ModelAndView newRecord();
     @PostMapping(value = ApiUrls.ADD_RECORD) void addRecord(RecordDTO recordDTO, @RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException, InterruptedException;
