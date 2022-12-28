@@ -63,7 +63,7 @@ public class Controller implements Api {
         return modelAndView;
     }
 
-    
+
     @Override
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
@@ -137,7 +137,7 @@ public class Controller implements Api {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
-    @GetMapping("book/{id}")
+    @GetMapping("/book/{id}")
     public ModelAndView formBook(@PathVariable(value = "id") UUID id, ModelAndView model, HttpServletRequest request) throws IOException, ParseException {
         Record record = recordRepository.findById(id).get();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

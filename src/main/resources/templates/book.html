@@ -16,30 +16,30 @@
 <header th:insert="header :: header"></header>
 
 <main role="main" class="container">
-      <h2 class="title" th:text="${record.title}">Title</h2>
-      <h4 class="mb-0" th:text="${record.address}">Address</h4>
-      <p class="description" th:text="${record.description}">Offer</p>
+  <h2 class="title" th:text="${record.title}">Title</h2>
+  <h4 class="mb-0" th:text="${record.address}">Address</h4>
+  <p class="description" th:text="${record.description}">Offer</p>
 
-      <form id="form" action="#" th:action="@{/book/} + ${record.id}" method="post" th:object="${BookDTO}">
-        <h4>Даты бронирования: </h4>
-        <input readonly name="date_start" class="title" th:value="${start}">
-        <input readonly name="date_end" class="title" th:value="${end}">
-        <h2 class="title" th:text="${daysBetween}"></h2>
-        <h4>Количество человек: </h4>
-        <input readonly name="people" class="title" th:value="${people}">
+  <form id="form" action="#" th:action="@{/book/} + ${record.id}" method="post" th:object="${BookDTO}">
+    <h4>Даты бронирования: </h4>
+    <input readonly name="date_start" class="title" th:value="${start}">
+    <input readonly name="date_end" class="title" th:value="${end}">
+    <h2 class="title" th:text="'Количество дней бронирования: '+${daysBetween}"></h2>
+    <h4>Количество человек: </h4>
+    <input readonly name="people" class="title" th:value="${people}">
 
-        <h2>Забронировать на имя</h2>
-        <label>ФИО: </label>
-        <input name="name" type="text" class="form-control" id="exampleInputTitle" placeholder="ФИО" required>
-        <label>Телефон: </label>
-        <input name="phone" type="text" class="form-control" id="exampleInputTel" placeholder="Телефон" required>
-        <h4 class="card-text mb-auto"> Price </h4>
-        <button class="btn btn-success" type="submit">Забронировать</button>
-      </form>
-      </div>
-      <div class="text-center">
-      <a class="btn btn-secondary" href="/">Вернуться</a>
-    </div>
+    <h2>Забронировать на имя</h2>
+    <label>ФИО: </label>
+    <input name="name" type="text" class="form-control" id="exampleInputTitle" placeholder="ФИО" required>
+    <label>Телефон: </label>
+    <input name="phone" type="text" class="form-control" id="exampleInputTel" placeholder="Телефон" required>
+    <h4 class="card-text mb-auto" th:text="'Стоимость аренды:'+${record.rent}*${daysBetween}"> Price </h4>
+    <button class="btn btn-success" type="submit">Забронировать</button>
+  </form>
+  </div>
+  <div class="text-center">
+    <a class="btn btn-secondary" href="/">Вернуться</a>
+  </div>
 </main>
 <script>
   function submit_form() {
