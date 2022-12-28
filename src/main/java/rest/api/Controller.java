@@ -23,8 +23,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+import java.time.temporal.ChronoUnit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -128,17 +134,21 @@ public class Controller implements Api {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView findRecord(@PathVariable(value = "id") UUID id, ModelAndView model, HttpServletRequest request) throws IOException {
-        String start = request.getParameter("start");
-        String end = request.getParameter("end");
+    public ModelAndView findRecord(@PathVariable(value = "id") UUID id, ModelAndView model, HttpServletRequest request) throws IOException, ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+        Date start = sdf.parse(request.getParameter("start"));
+        Date end = sdf.parse(request.getParameter("end"));
         String berth = request.getParameter("berth");
+        long daysBetween = TimeUnit.MILLISECONDS.toDays(end.getTime() - start.getTime());
         Optional<Record> record = recordRepository.findById(id);
         ArrayList<Record> res = new ArrayList<>();
         record.ifPresent(res::add);
         model.setViewName("book");
         model.getModel().put("record", res);
-        model.getModel().put("start", start);
-        model.getModel().put("end", end);
+        model.getModel().put("start", form.format(start));
+        model.getModel().put("end", form.format(end));
+        model.getModel().put("daysBetween", daysBetween);
         model.getModel().put("berth", berth);
         return model;
     }
