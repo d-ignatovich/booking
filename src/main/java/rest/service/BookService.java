@@ -42,6 +42,8 @@ public class BookService {
 
 
     public Map<Record,List<BookDTO>> getAllBooksByRecord(long currentUserId) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
         return recordRepository.findAll().stream()
                 .collect(Collectors.toMap(
                         record -> record,
@@ -53,8 +55,12 @@ public class BookService {
                                     BookDTO.setPhone(book.getPhone());
                                     BookDTO.setName(book.getName());
                                     BookDTO.setPeople(book.getPeople().toString());
-                                    BookDTO.setDate_start(book.getDate_start().toString());
-                                    BookDTO.setDate_end(book.getDate_end().toString());
+                                    try {
+                                        BookDTO.setDate_start(form.format(sdf.parse(book.getDate_start().toString())));
+                                        BookDTO.setDate_end((form.format(sdf.parse(book.getDate_end().toString()))));
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
                                     return BookDTO;
                                 })
                                 .collect(Collectors.toList())))
