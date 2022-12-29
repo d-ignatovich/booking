@@ -23,6 +23,7 @@ public class UserService implements UserDetailsService {
 
     @PersistenceContext
     private EntityManager em;
+    
     @Autowired
     private UserRepository userRepository;
 

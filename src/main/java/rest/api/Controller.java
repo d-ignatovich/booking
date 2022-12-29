@@ -64,8 +64,6 @@ public class Controller implements Api {
         modelAndView.getModel().put("userId", getCurrentUser().getId().toString());
         return modelAndView;
     }
-
-
     
     @Override
     public ModelAndView login() {
@@ -77,7 +75,7 @@ public class Controller implements Api {
     @Override
     public ModelAndView newRecord() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("create"); // указываю какую страницу вернуть
+        modelAndView.setViewName("create");
         return modelAndView;
     }
 
@@ -101,8 +99,6 @@ public class Controller implements Api {
         response.sendRedirect("/{id}");
     }
 
-
-
     @Override
     public ModelAndView bookings() {
             ModelAndView modelAndView = new ModelAndView();
@@ -111,7 +107,6 @@ public class Controller implements Api {
             modelAndView.getModel().put("booksByRecord", bookService.getAllBooksByRecord(getCurrentUser().getId()));
             return modelAndView;
         }
-
 
     @Override
     public RedirectView redirectToMainPage() {
@@ -191,5 +186,4 @@ public class Controller implements Api {
         model.getModel().put("daysBetween", daysBetween);
         return model;
     }
-
 }

@@ -35,4 +35,5 @@ if (mm < 10) {
    mm = '0' + mm;
 }
 max = yyyy + '-' + mm + '-' + dd;
+document.getElementById("start").setAttribute("max", max);
 document.getElementById("end").setAttribute("max", max);
