@@ -1,11 +1,10 @@
 package rest.service;
-
-import org.springframework.stereotype.Service;
-
 import rest.dto.RecordDTO;
 import rest.persistence.repository.RecordRepository;
 import rest.persistence.entity.Record;
 import rest.persistence.entity.User;
+
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;

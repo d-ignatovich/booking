@@ -46,7 +46,7 @@ create table book(
     primary key (id),
     user_id int,
     foreign key (user_id) references user (id),
-    record_id binary,
+    record_id binary(16),
     foreign key (record_id) references record (id)
 );
 

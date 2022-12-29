@@ -20,31 +20,24 @@
     <h4 class="mb-0" th:text="${record.address}">Address</h4>
     <p class="description" th:text="${record.description}">Offer</p>
 
-    <form id="form" action="#" th:action="@{/book/} + ${record.id}" method="post" th:object="${BookDTO}">
         <h4>Даты бронирования: </h4>
-        <input readonly name="date_start" class="title" th:value="${start}">
-        <input readonly name="date_end" class="title" th:value="${end}">
+        <span name="date_start" class="title" th:text="${start}"></span>
+        <span name="date_end" class="title" th:text="${end}"></span>
         <h2 class="title" th:text="'Количество дней бронирования: '+${daysBetween}"></h2>
         <h4>Количество человек: </h4>
-        <input readonly name="people" class="title" th:value="${people}">
+        <span name="people" class="title" th:text="${book.people}"></span>
 
-        <h2>Забронировать на имя</h2>
-        <label>ФИО: </label>
-        <input name="name" type="text" class="form-control" id="exampleInputTitle" placeholder="ФИО" required>
-        <label>Телефон: </label>
-        <input name="phone" type="tel" pattern="^[0-9\-\+]{9,15}$" class="form-control" id="exampleInputTel" placeholder="Телефон" required>
+        <h4>ФИО: </h4>
+        <span name="name" type="text" class="title" id="exampleInputTitle" th:text="${book.name}"></span>
+        <h4>Телефон: </h4>
+        <span name="phone" type="text" class="title" id="exampleInputTel" th:text="${book.phone}"></span>
         <h4 class="card-text mb-auto" th:text="'Стоимость аренды:'+${record.rent}*${daysBetween}"> Price </h4>
-        <button class="btn btn-success" type="submit">Забронировать</button>
-    </form>
+
+
     </div>
     <div class="text-center">
-        <a class="btn btn-secondary" href="/">Вернуться</a>
+        <a class="btn btn-secondary" href="/bookings">Вернуться</a>
     </div>
 </main>
-<script>
-  function submit_form() {
-    console.log(document.getElementById("form"));
-  }
-</script>
 </body>
 </html>

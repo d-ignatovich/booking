@@ -1,10 +1,4 @@
 package rest.service;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
-
 import rest.dto.BookDTO;
 import rest.persistence.repository.BookRepository;
 import rest.persistence.entity.Book;
@@ -12,22 +6,26 @@ import rest.persistence.entity.Record;
 import rest.persistence.entity.User;
 import rest.persistence.repository.RecordRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import lombok.var;
 
 @Service
 public class BookService {
 
     @Autowired
     private RecordRepository recordRepository;
-    private final BookRepository bookRepository;
-
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+    
+    @Autowired
+    private BookRepository bookRepository;
 
     public void createBook(BookDTO bookDTO, User user, Record record) throws ParseException {
         SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
@@ -42,10 +40,9 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    //public Map<Record,List<BookDTO>> getAllBooks() {
+
     public Map<Record,List<BookDTO>> getAllBooksByRecord(long currentUserId) {
         return recordRepository.findAll().stream()
-
                 .collect(Collectors.toMap(
                         record -> record,
                         record -> bookRepository.findAll().stream()

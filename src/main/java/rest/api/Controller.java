@@ -1,32 +1,35 @@
 package rest.api;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 import rest.dto.BookDTO;
 import rest.dto.RecordDTO;
+import rest.persistence.entity.Book;
 import rest.persistence.entity.Record;
 import rest.persistence.entity.User;
+import rest.persistence.repository.BookRepository;
 import rest.persistence.repository.RecordRepository;
 import rest.service.RecordService;
 import rest.service.UserService;
 import rest.service.BookService;
 import rest.service.FileUploadService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
+
 import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class Controller implements Api {
@@ -42,10 +45,15 @@ public class Controller implements Api {
     @Autowired
     private BookService bookService;
 
-    Logger logger = LoggerFactory.getLogger(Controller.class);
+    @Autowired
+    private BookRepository bookRepository;
+
     @Autowired
     private RecordRepository recordRepository;
 
+    public User getCurrentUser() {
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
 
     @Override
     public ModelAndView overview() {
@@ -105,19 +113,19 @@ public class Controller implements Api {
         }
 
 
-    @GetMapping("/")
-    public RedirectView redirectToWelcomePage() {
+    @Override
+    public RedirectView redirectToMainPage() {
         return new RedirectView("/overview");
     }
 
-    @GetMapping("/registration")
+    @Override
     public ModelAndView registration(ModelAndView model) {
         model.setViewName("registration");
         model.getModel().put("userForm", new User());
         return model;
     }
 
-    @PostMapping("/registration")
+    @Override
     public ModelAndView addUser(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, ModelAndView model) {
         model.setViewName("registration");
         if (bindingResult.hasErrors()) {
@@ -134,17 +142,12 @@ public class Controller implements Api {
         else {
             userService.saveUser(userForm);
         }
-
         model.clear();
         model.setView(new RedirectView("/login"));
         return model;
     }
 
-    public User getCurrentUser() {
-        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
-
-    @GetMapping("book/{id}")
+    @Override
     public ModelAndView formBook(@PathVariable(value = "id") UUID id, ModelAndView model, HttpServletRequest request) throws IOException, ParseException {
         Record record = recordRepository.findById(id).get();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -162,12 +165,31 @@ public class Controller implements Api {
         return model;
     }
 
-    @PostMapping("/book/{id}")
+    @Override
     public void createBook(@PathVariable(value = "id") UUID id, BookDTO bookDTO, HttpServletResponse response) throws ParseException, IOException {
         Record record = recordRepository.findById(id).get();
         bookDTO.setId(UUID.randomUUID().toString());
         bookService.createBook(bookDTO, getCurrentUser(), record);
         response.sendRedirect("/");
+    }
+
+    @Override
+    public ModelAndView bookInfo(@PathVariable(value = "id") Long id, ModelAndView model, HttpServletRequest request) throws ParseException {
+        Book book = bookRepository.findById(id).get();
+        Record record = book.getRecord();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+        Date start = sdf.parse(book.getDate_start().toString());
+        Date end = sdf.parse(book.getDate_end().toString());
+        long daysBetween = TimeUnit.MILLISECONDS.toDays(end.getTime() - start.getTime());
+        model.clear();
+        model.setViewName("bookinfo");
+        model.getModel().put("record", record);
+        model.getModel().put("book", book);
+        model.getModel().put("start", form.format(start));
+        model.getModel().put("end", form.format(end));
+        model.getModel().put("daysBetween", daysBetween);
+        return model;
     }
 
 }

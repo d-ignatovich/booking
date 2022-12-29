@@ -1,10 +1,10 @@
 package rest.api;
+import rest.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-import rest.service.UserService;
 
 @RestController
 public class AdminController {
